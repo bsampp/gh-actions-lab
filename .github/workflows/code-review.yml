@@ -16,7 +16,6 @@ jobs:
         id: diff
         run: |
           git fetch origin main --unshallow  # Fetch the full history of the main branch
-          git checkout -b main origin/main  # Ensure main branch exists locally
           git diff origin/main...HEAD > diff.patch
           echo "diff_file=diff.patch" >> $GITHUB_OUTPUT
 
