@@ -36,9 +36,16 @@ jobs:
           python .github/scripts/review.py > review_result.txt
           cat review_result.txt
 
+      - name: Set review output
+        id: set_output
+        run: |
+          echo "review_text<<EOF" >> $GITHUB_OUTPUT
+          cat review_result.txt >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v4
         with:
           issue-number: ${{ github.event.pull_request.number }}
-          body: ${{ steps.review.outputs.review_text }}
+          body: ${{ steps.set_output.outputs.review_text }}
           reactions: '+1'
