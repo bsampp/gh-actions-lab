@@ -15,9 +15,9 @@ jobs:
       - name: Get code diff
         id: diff
         run: |
-          git fetch origin main
+          git fetch origin main --depth=1  # Fetch only the latest commit from main
           git diff origin/main...HEAD > diff.patch
-          echo "diff_file=diff.patch >> $GITHUB_OUTPUT"
+          echo "diff_file=diff.patch" >> $GITHUB_OUTPUT
 
       - name: Set up Python
         uses: actions/setup-python@v4
