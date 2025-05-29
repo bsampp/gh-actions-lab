@@ -16,7 +16,7 @@ jobs:
         id: diff
         run: |
           git fetch origin main --unshallow
-          git diff origin/main...HEAD > diff.patch
+          git diff origin/main...HEAD --patch --binary --diff-filter=ACMR > diff.patch
 
       - name: Set up Python
         uses: actions/setup-python@v4
