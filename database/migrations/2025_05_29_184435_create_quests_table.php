@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('quests', function (Blueprint $table) {
             $table->id();
+            $table->text('title');
+            $table->text('description');
+            $table->integer('reward');
+            $table->foreignId('category_id')->constrained();
             $table->timestamps();
         });
     }
